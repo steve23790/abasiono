@@ -1,0 +1,132 @@
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scanline {
+  0%   { top: -2px; }
+  100% { top: 100%; }
+}
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(47,124,246,0.4); }
+  50%       { box-shadow: 0 0 0 16px rgba(47,124,246,0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -60px) scale(1.08); }
+  66%       { transform: translate(-30px, 30px) scale(0.95); }
+}
+@keyframes matrix-fall {
+  0%   { opacity: 0; transform: translateY(-20px); }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(100vh); }
+}
+
+/* ── Utility classes ──────────────────────────────────────── */
+.animate-fade-up   { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.animate-fade-in   { animation: fadeIn 0.6s ease both; }
+.animate-scanline  { animation: scanline 8s linear infinite; }
+.animate-pulse-ring { animation: pulse-ring 2.5s cubic-bezier(0.4,0,0.6,1) infinite; }
+.animate-float     { animation: float 5s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.animate-blink     { animation: blink 1.2s step-end infinite; }
+.animate-orb       { animation: orb-drift 14s ease-in-out infinite; }
+
+/* Shimmer text */
+.shimmer-text {
+  background: linear-gradient(90deg, #2f7cf6 0%, #05c8dc 25%, #8b5cf6 50%, #2f7cf6 75%, #05c8dc 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Glass panel */
+.glass {
+  background: rgba(9,14,26,0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(47,124,246,0.12);
+}
+.glass-strong {
+  background: rgba(9,14,26,0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(47,124,246,0.18);
+}
+
+/* Section fade-in via Intersection Observer */
+.section-hidden {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.section-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scrollbar hidden */
+* { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { display: none; }
+
+
+html { scroll-behavior: smooth; }
+
+/* Prevent horizontal page scrolling caused by large absolute elements */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Prefer vertical panning on touch devices to avoid accidental horizontal pan */
+body {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Safe area helper for devices with notches/rounded displays */
+.safe-area-vertical {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Input styles */
+.portfolio-input {
+  background: rgba(13,21,37,0.8);
+  border: 1px solid rgba(47,124,246,0.18);
+  color: #eef2f8;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.portfolio-input:focus {
+  border-color: rgba(47,124,246,0.5);
+  box-shadow: 0 0 0 3px rgba(47,124,246,0.1);
+}
+.portfolio-input::placeholder { color: #4a5a75; }
