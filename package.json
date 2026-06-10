@@ -6,7 +6,9 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "node ./node_modules/vite/bin/vite.js build",
-		"preview": "node ./node_modules/vite/bin/vite.js preview"
+		"preview": "node ./node_modules/vite/bin/vite.js preview",
+		"vercel-build": "node ./node_modules/vite/bin/vite.js build",
+		"postinstall": "chmod +x node_modules/.bin/vite || true"
 	},
 	"dependencies": {
 		"framer-motion": "^12.40.0",
